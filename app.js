@@ -1,13 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-const petsRouter = require('./routes/pets')
+const indexRouter = require('./routes/index');
+const petsRouter = require('./routes/pets');
+const servicosRouter = require('./routes/servicos');
+const cadastroRouter = require('./routes/cadastro');
+const contatoRouter = require ('./routes/contato');
+const loginRouter = require ('./routes/login');
+const sobreRouter = require ('./routes/sobre');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +25,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/pets', petsRouter)
+app.use('/pets', petsRouter);
+app.use('/servicos', servicosRouter);
+app.use('/cadastro', cadastroRouter);
+app.use('/contato' , contatoRouter);
+app.use('/login', loginRouter);
+app.use('/sobre', sobreRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
